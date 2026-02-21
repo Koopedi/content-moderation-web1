@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Content Moderation Dashboard</title>
+    <style>
+
+        body {
+            background: #f4f6f9;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+        }
+
+        button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: #3498db;
+            color: white;
+        }
+
+        .danger {
+            background: #e74c3c;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Content Moderation Dashboard</h1>
+
+    <div class="card">
+        <form action="/add" method="post">
+            <input type="text" name="word" placeholder="Enter word" required/>
+            <button>Add</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <ul>
+            <li th:each="word : ${words}">
+                <span th:text="${word.word}"></span>
+                <form th:action="@{/delete/{id}(id=${word.id})}" method="post">
+                    <button class="danger">Delete</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <form action="/sanitize" method="post">
+            <textarea name="text" th:text="${inputText}"></textarea>
+            <button>Sanitize</button>
+        </form>
+
+        <div th:if="${result}">
+            <h3>Result:</h3>
+            <p th:text="${result}"></p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
