@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Text Sanitizer</title>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 80px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            resize: vertical;
+            font-size: 15px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            background: #667eea;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            background: #f1f5ff;
+            border-left: 5px solid #667eea;
+            border-radius: 6px;
+        }
+
+        .admin-link {
+            display: block;
+            margin-top: 30px;
+            text-align: center;
+            text-decoration: none;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .admin-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Text Sanitizer</h1>
+
+    <form action="/sanitize" method="post">
+        <textarea name="text" rows="6"
+                  placeholder="Enter text to sanitize..."
+                  th:text="${inputText}"></textarea>
+        <button>Sanitize</button>
+    </form>
+
+    <div th:if="${result}" class="result">
+        <h3>Result:</h3>
+        <p th:text="${result}"></p>
+    </div>
+
+    <a href="/internal/dashboard" class="admin-link">
+        Go to Admin Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

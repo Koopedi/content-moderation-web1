@@ -1,153 +1,153 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Content Moderation Dashboard</title>
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Content Moderation Dashboard</title>-->
 
-    <style>
+<!--    <style>-->
 
-        body {
-            background: #f4f6f9;
-            font-family: Arial, sans-serif;
-            padding: 40px;
-        }
+<!--        body {-->
+<!--            background: #f4f6f9;-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            padding: 40px;-->
+<!--        }-->
 
-        .container {
-            max-width: 900px;
-            margin: auto;
-        }
+<!--        .container {-->
+<!--            max-width: 900px;-->
+<!--            margin: auto;-->
+<!--        }-->
 
-        .card {
-            background: white;
-            padding: 25px;
-            margin-bottom: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
+<!--        .card {-->
+<!--            background: white;-->
+<!--            padding: 25px;-->
+<!--            margin-bottom: 25px;-->
+<!--            border-radius: 10px;-->
+<!--            box-shadow: 0 4px 10px rgba(0,0,0,0.05);-->
+<!--        }-->
 
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+<!--        h1 {-->
+<!--            text-align: center;-->
+<!--            margin-bottom: 30px;-->
+<!--        }-->
 
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 12px;
-        }
+<!--        input, textarea {-->
+<!--            width: 100%;-->
+<!--            padding: 10px;-->
+<!--            margin-bottom: 12px;-->
+<!--        }-->
 
-        button {
-            padding: 8px 14px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            background: #3498db;
-            color: white;
-        }
+<!--        button {-->
+<!--            padding: 8px 14px;-->
+<!--            border: none;-->
+<!--            border-radius: 6px;-->
+<!--            cursor: pointer;-->
+<!--            background: #3498db;-->
+<!--            color: white;-->
+<!--        }-->
 
-        .danger {
-            background: #e74c3c;
-        }
+<!--        .danger {-->
+<!--            background: #e74c3c;-->
+<!--        }-->
 
-        ul {
-            list-style: none;
-        }
+<!--        ul {-->
+<!--            list-style: none;-->
+<!--        }-->
 
-        li {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-        }
+<!--        li {-->
+<!--            display: flex;-->
+<!--            justify-content: space-between;-->
+<!--            padding: 8px 0;-->
+<!--        }-->
 
-        /* 🔥 Alert Styling */
-        .alert {
-            padding: 12px;
-            border-radius: 6px;
-            margin-top: 10px;
-            font-weight: bold;
-            transition: opacity 1s ease;
-        }
+<!--        /* 🔥 Alert Styling */-->
+<!--        .alert {-->
+<!--            padding: 12px;-->
+<!--            border-radius: 6px;-->
+<!--            margin-top: 10px;-->
+<!--            font-weight: bold;-->
+<!--            transition: opacity 1s ease;-->
+<!--        }-->
 
-        .alert-success {
-            background-color: #d4edda;
-            color: #155724;
-        }
+<!--        .alert-success {-->
+<!--            background-color: #d4edda;-->
+<!--            color: #155724;-->
+<!--        }-->
 
-        .alert-error {
-            background-color: #f8d7da;
-            color: #721c24;
-        }
+<!--        .alert-error {-->
+<!--            background-color: #f8d7da;-->
+<!--            color: #721c24;-->
+<!--        }-->
 
-    </style>
-</head>
-<body>
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
 
-<div class="container">
-    <h1>Content Moderation Dashboard</h1>
+<!--<div class="container">-->
+<!--    <h1>Content Moderation Dashboard</h1>-->
 
-    <div class="card">
-        <form action="/add" method="post">
-            <input type="text" name="word" placeholder="Enter word" required/>
-            <button>Add</button>
-        </form>
+<!--    <div class="card">-->
+<!--        <form action="/add" method="post">-->
+<!--            <input type="text" name="word" placeholder="Enter word" required/>-->
+<!--            <button>Add</button>-->
+<!--        </form>-->
 
-        <!-- ✅ Success Message -->
-        <div id="successMessage"
-             th:if="${success}"
-             class="alert alert-success">
-            <span th:text="${success}"></span>
-        </div>
+<!--        &lt;!&ndash; ✅ Success Message &ndash;&gt;-->
+<!--        <div id="successMessage"-->
+<!--             th:if="${success}"-->
+<!--             class="alert alert-success">-->
+<!--            <span th:text="${success}"></span>-->
+<!--        </div>-->
 
-        <!-- ❌ Error Message -->
-        <div id="errorMessage"
-             th:if="${error}"
-             class="alert alert-error">
-            <span th:text="${error}"></span>
-        </div>
+<!--        &lt;!&ndash; ❌ Error Message &ndash;&gt;-->
+<!--        <div id="errorMessage"-->
+<!--             th:if="${error}"-->
+<!--             class="alert alert-error">-->
+<!--            <span th:text="${error}"></span>-->
+<!--        </div>-->
 
-    </div>
+<!--    </div>-->
 
-    <div class="card">
-        <ul>
-            <li th:each="word : ${words}">
-                <span th:text="${word.word}"></span>
-                <form th:action="@{/delete/{id}(id=${word.id})}" method="post">
-                    <button class="danger">Delete</button>
-                </form>
-            </li>
-        </ul>
-    </div>
+<!--    <div class="card">-->
+<!--        <ul>-->
+<!--            <li th:each="word : ${words}">-->
+<!--                <span th:text="${word.word}"></span>-->
+<!--                <form th:action="@{/delete/{id}(id=${word.id})}" method="post">-->
+<!--                    <button class="danger">Delete</button>-->
+<!--                </form>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </div>-->
 
-    <div class="card">
-        <form action="/sanitize" method="post">
-            <textarea name="text" th:text="${inputText}"></textarea>
-            <button>Sanitize</button>
-        </form>
+<!--    <div class="card">-->
+<!--        <form action="/sanitize" method="post">-->
+<!--            <textarea name="text" th:text="${inputText}"></textarea>-->
+<!--            <button>Sanitize</button>-->
+<!--        </form>-->
 
-        <div th:if="${result}">
-            <h3>Result:</h3>
-            <p th:text="${result}"></p>
-        </div>
-    </div>
+<!--        <div th:if="${result}">-->
+<!--            <h3>Result:</h3>-->
+<!--            <p th:text="${result}"></p>-->
+<!--        </div>-->
+<!--    </div>-->
 
-</div>
+<!--</div>-->
 
-<script>
-    setTimeout(function () {
+<!--<script>-->
+<!--    setTimeout(function () {-->
 
-        const messages = ["successMessage", "errorMessage"];
+<!--        const messages = ["successMessage", "errorMessage"];-->
 
-        messages.forEach(function(id) {
-            const element = document.getElementById(id);
-            if (element) {
-                element.style.opacity = "0";
-                setTimeout(function() {
-                    element.remove();
-                }, 1000);
-            }
-        });
+<!--        messages.forEach(function(id) {-->
+<!--            const element = document.getElementById(id);-->
+<!--            if (element) {-->
+<!--                element.style.opacity = "0";-->
+<!--                setTimeout(function() {-->
+<!--                    element.remove();-->
+<!--                }, 1000);-->
+<!--            }-->
+<!--        });-->
 
-    }, 10000); // 10 seconds
-</script>
+<!--    }, 10000); // 10 seconds-->
+<!--</script>-->
 
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->
