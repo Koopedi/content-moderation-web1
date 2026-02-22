@@ -36,6 +36,24 @@ public class InternalController {
         return "redirect:/internal/dashboard";
     }
 
+    @PostMapping("/update/{id}")
+    public String update(@PathVariable Long id,
+                         @RequestParam String word,
+                         RedirectAttributes redirectAttributes) {
+
+        WordResponse response = service.update(id, word);
+
+        if (response.getMessage() != null &&
+                response.getMessage().equalsIgnoreCase("Word already exists")) {
+
+            redirectAttributes.addFlashAttribute("error", response.getMessage());
+        } else {
+            redirectAttributes.addFlashAttribute("success", response.getMessage());
+        }
+
+        return "redirect:/internal/dashboard";
+    }
+
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable Long id,
                          RedirectAttributes redirectAttributes) {

@@ -1,5 +1,6 @@
 package co.za.flash.content_moderation_web.service;
 
+import co.za.flash.content_moderation_web.model.UpdateWordRequest;
 import co.za.flash.content_moderation_web.model.Word;
 import co.za.flash.content_moderation_web.model.WordResponse;
 import lombok.RequiredArgsConstructor;
@@ -32,15 +33,17 @@ public class SensitiveWordWebService {
     }
 
 
-//    public void add(String word) {
-//        webClient.post()
-//                .uri("/words")
-//                .bodyValue(new Word(null, word))
-//                .retrieve()
-//                .bodyToMono(Void.class)
-//                .block();
-//    }
+    public WordResponse update(Long id, String word) {
+        UpdateWordRequest request = new UpdateWordRequest();
+        request.setWord(word);
 
+        return webClient.put()
+                .uri("/words/{id}", id)
+                .bodyValue(request)
+                .retrieve()
+                .bodyToMono(WordResponse.class)
+                .block();
+    }
 
     public void delete(Long id) {
         webClient.delete()
